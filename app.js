@@ -10,14 +10,22 @@ yesBtn.addEventListener("click", () => {
 });
 
 noBtn.addEventListener("mouseover", () => {
-  const noBtnRect = noBtn.getBoundingClientRect();
-  const maxX = window.innerWidth - noBtnRect.width;
-  const maxY = window.innerHeight - noBtnRect.height;
+  setPositionRandomly(noBtn);
+});
 
-  // Ensure the random position is within the screen boundaries
+noBtn.addEventListener("click", () => {
+  setPositionRandomly(noBtn);
+});
+
+// Function to set button position randomly within visible area
+function setPositionRandomly(element) {
+  const elementRect = element.getBoundingClientRect();
+  const maxX = window.innerWidth - elementRect.width;
+  const maxY = window.innerHeight - elementRect.height;
+
   const randomX = Math.max(0, Math.min(maxX, Math.floor(Math.random() * maxX)));
   const randomY = Math.max(0, Math.min(maxY, Math.floor(Math.random() * maxY)));
 
-  noBtn.style.left = randomX + "px";
-  noBtn.style.top = randomY + "px";
-});
+  element.style.left = randomX + "px";
+  element.style.top = randomY + "px";
+}
